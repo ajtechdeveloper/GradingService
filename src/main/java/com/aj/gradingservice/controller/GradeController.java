@@ -30,6 +30,7 @@ public class GradeController {
 
     @RequestMapping(value = "grades", method = RequestMethod.GET)
     public ResponseEntity<List<Grade>> getGrades() {
+        logger.info("In GradeController.getGrades(), fetching list of grades");
         List<Grade> grades = new ArrayList<>();
         grades.add(new Grade(1, "P001", "A+"));
         grades.add(new Grade(2, "C001", "A"));
