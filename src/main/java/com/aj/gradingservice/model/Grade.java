@@ -6,6 +6,10 @@ public class Grade {
     private String studentId;
     private String grade;
 
+    public Grade() {
+        super();
+    }
+
     public Grade(int id, String studentId, String grade) {
         this.id = id;
         this.studentId = studentId;

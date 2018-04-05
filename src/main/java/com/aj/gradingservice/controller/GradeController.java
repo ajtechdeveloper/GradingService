@@ -4,7 +4,9 @@ import com.aj.gradingservice.model.Grade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,5 +38,13 @@ public class GradeController {
         grades.add(new Grade(2, "C001", "A"));
         grades.add(new Grade(3, "M001", "B+"));
         return new ResponseEntity<>(grades, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "grade", method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Grade> createGrade(@RequestBody Grade grade) {
+        logger.info("Request received is: " + grade );
+        Grade gradeCreated = new Grade(grade.getId(),grade.getStudentId(),grade.getGrade());
+        return new ResponseEntity<>(gradeCreated, HttpStatus.OK);
     }
 }
